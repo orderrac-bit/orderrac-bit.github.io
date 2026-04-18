@@ -1,0 +1,1117 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ORDERRA · סקירת שוק שבועית · 18.04.2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&family=JetBrains+Mono:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0a;
+    --surface: #121212;
+    --surface-2: #1a1a1a;
+    --surface-3: #222222;
+    --border: #2a2a2a;
+    --border-bright: #3a3a3a;
+    --gold: #d4af37;
+    --gold-bright: #e8c547;
+    --gold-dim: #8b7720;
+    --text: #ececec;
+    --text-dim: #9a9a9a;
+    --text-muted: #5a5a5a;
+    --green: #34d399;
+    --green-bg: rgba(52, 211, 153, 0.08);
+    --red: #f87171;
+    --red-bg: rgba(248, 113, 113, 0.08);
+    --amber: #fbbf24;
+    --amber-bg: rgba(251, 191, 36, 0.08);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Heebo', sans-serif;
+    font-weight: 400;
+    direction: rtl;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    background-image:
+      radial-gradient(circle at 85% 10%, rgba(212, 175, 55, 0.05) 0%, transparent 50%),
+      radial-gradient(circle at 15% 90%, rgba(212, 175, 55, 0.03) 0%, transparent 50%);
+    min-height: 100vh;
+  }
+
+  /* === BIDI ISOLATION === */
+  .ltr {
+    unicode-bidi: isolate;
+    direction: ltr;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .ltr-heb {
+    unicode-bidi: isolate;
+    direction: ltr;
+    font-family: 'Heebo', sans-serif;
+  }
+
+  /* === LAYOUT === */
+  .container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 clamp(16px, 3vw, 40px);
+  }
+
+  /* === HEADER === */
+  .header {
+    border-block-end: 1px solid var(--border);
+    padding-block: 24px;
+    margin-block-end: 32px;
+    background: linear-gradient(180deg, rgba(212, 175, 55, 0.02), transparent);
+  }
+  .header-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .brand-mark {
+    width: 10px;
+    height: 10px;
+    background: var(--gold);
+    border-radius: 50%;
+    box-shadow: 0 0 20px var(--gold);
+  }
+  .brand-name {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 800;
+    font-size: 18px;
+    letter-spacing: 0.15em;
+    color: var(--gold);
+  }
+  .brand-divider {
+    color: var(--text-muted);
+    font-size: 18px;
+    margin-inline: 4px;
+  }
+  .brand-title {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--text-dim);
+  }
+  .header-meta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 4px;
+  }
+  .header-meta-label {
+    font-size: 11px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    font-weight: 500;
+  }
+  .header-meta-value {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: var(--text-dim);
+    font-weight: 600;
+  }
+
+  /* === HERO TITLE === */
+  .hero {
+    padding-block: 20px 40px;
+    border-block-end: 1px solid var(--border);
+    margin-block-end: 40px;
+  }
+  .hero-kicker {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--gold);
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    margin-block-end: 16px;
+  }
+  .hero-title {
+    font-size: clamp(32px, 5vw, 56px);
+    font-weight: 900;
+    line-height: 1.1;
+    color: var(--text);
+    margin-block-end: 16px;
+    letter-spacing: -0.02em;
+  }
+  .hero-title .accent { color: var(--gold); }
+  .hero-sub {
+    font-size: clamp(15px, 2vw, 18px);
+    color: var(--text-dim);
+    max-width: 780px;
+    font-weight: 400;
+  }
+
+  /* === STATS STRIP === */
+  .stats-strip {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    margin-block-end: 56px;
+  }
+  .stat {
+    background: var(--surface);
+    padding: 18px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    transition: background 0.2s;
+  }
+  .stat:hover { background: var(--surface-2); }
+  .stat-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--text-muted);
+    letter-spacing: 0.1em;
+  }
+  .stat-value {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--text);
+    letter-spacing: -0.02em;
+  }
+  .stat-change {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    font-weight: 600;
+  }
+  .up { color: var(--green); }
+  .down { color: var(--red); }
+  .flat { color: var(--amber); }
+
+  /* === SECTION === */
+  section {
+    margin-block-end: 64px;
+  }
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    margin-block-end: 28px;
+    padding-block-end: 12px;
+    border-block-end: 1px solid var(--border);
+  }
+  .section-number {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--gold);
+    letter-spacing: 0.15em;
+  }
+  .section-title {
+    font-size: clamp(24px, 3vw, 32px);
+    font-weight: 900;
+    color: var(--text);
+    letter-spacing: -0.02em;
+  }
+  .section-sub {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-inline-start: auto;
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: 0.1em;
+  }
+
+  /* === OVERVIEW TEXT === */
+  .overview {
+    font-size: clamp(16px, 1.8vw, 19px);
+    line-height: 1.8;
+    color: var(--text);
+    max-width: 100%;
+    font-weight: 400;
+    padding: 32px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-inline-start: 3px solid var(--gold);
+  }
+  .overview strong { color: var(--gold-bright); font-weight: 700; }
+
+  /* === KEY INSIGHTS === */
+  .insights {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 2px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+  .insight {
+    background: var(--surface);
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    transition: background 0.2s;
+  }
+  .insight:hover { background: var(--surface-2); }
+  .insight-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    font-weight: 800;
+    color: var(--gold);
+    letter-spacing: 0.1em;
+  }
+  .insight-title {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1.4;
+  }
+  .insight-body {
+    font-size: 14.5px;
+    color: var(--text-dim);
+    line-height: 1.7;
+  }
+
+  /* === CARD GRID === */
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 16px;
+  }
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 24px;
+    position: relative;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .card:hover {
+    border-color: var(--gold-dim);
+    transform: translateY(-2px);
+  }
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-block-end: 18px;
+    padding-block-end: 14px;
+    border-block-end: 1px solid var(--border);
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .card-title {
+    font-size: 19px;
+    font-weight: 700;
+    color: var(--text);
+    letter-spacing: -0.01em;
+  }
+  .card-ticker {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--gold);
+    letter-spacing: 0.05em;
+  }
+  .card-price {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-dim);
+  }
+  .card-field {
+    margin-block-end: 12px;
+  }
+  .card-field:last-child { margin-block-end: 0; }
+  .card-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10.5px;
+    font-weight: 700;
+    color: var(--text-muted);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-block-end: 4px;
+  }
+  .card-text {
+    font-size: 14px;
+    color: var(--text-dim);
+    line-height: 1.65;
+  }
+  .card-text strong { color: var(--text); font-weight: 600; }
+
+  /* === DIRECTION BADGES === */
+  .badge {
+    display: inline-block;
+    padding: 3px 10px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    border: 1px solid;
+    text-transform: uppercase;
+  }
+  .badge-bull { color: var(--green); background: var(--green-bg); border-color: var(--green); }
+  .badge-bear { color: var(--red); background: var(--red-bg); border-color: var(--red); }
+  .badge-neutral { color: var(--amber); background: var(--amber-bg); border-color: var(--amber); }
+
+  /* === INSTITUTIONAL === */
+  .institutional {
+    padding: 32px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    font-size: 15.5px;
+    line-height: 1.8;
+    color: var(--text);
+  }
+  .institutional p { margin-block-end: 16px; }
+  .institutional p:last-child { margin-block-end: 0; }
+  .institutional ul {
+    list-style: none;
+    padding-inline-start: 0;
+    margin-block-end: 16px;
+  }
+  .institutional li {
+    position: relative;
+    padding-inline-start: 24px;
+    margin-block-end: 10px;
+    color: var(--text-dim);
+  }
+  .institutional li::before {
+    content: '';
+    position: absolute;
+    inset-inline-start: 0;
+    top: 0.75em;
+    width: 10px;
+    height: 1px;
+    background: var(--gold);
+  }
+  .institutional strong { color: var(--gold-bright); font-weight: 700; }
+
+  /* === OUTLOOK TABLE === */
+  .outlook {
+    border: 1px solid var(--border);
+    background: var(--surface);
+    overflow-x: auto;
+  }
+  .outlook table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 720px;
+  }
+  .outlook th,
+  .outlook td {
+    text-align: start;
+    padding: 14px 16px;
+    border-block-end: 1px solid var(--border);
+    font-size: 14px;
+  }
+  .outlook th {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    background: var(--surface-2);
+    border-block-end: 1px solid var(--border-bright);
+  }
+  .outlook td.asset {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 700;
+    color: var(--gold);
+    font-size: 14px;
+    letter-spacing: 0.03em;
+  }
+  .outlook td.rationale { color: var(--text-dim); }
+  .outlook tr:last-child td { border-block-end: none; }
+  .outlook tr:hover td { background: var(--surface-2); }
+
+  /* === RISK === */
+  .risks {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 16px;
+  }
+  .risk {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-inline-start: 3px solid var(--red);
+    padding: 24px;
+  }
+  .risk-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--red);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-block-end: 12px;
+  }
+  .risk-body {
+    font-size: 14.5px;
+    color: var(--text-dim);
+    line-height: 1.7;
+  }
+
+  /* === MISSING (final callout) === */
+  .missing {
+    padding: clamp(28px, 4vw, 48px);
+    background:
+      linear-gradient(135deg, rgba(212, 175, 55, 0.08), rgba(212, 175, 55, 0.02)),
+      var(--surface);
+    border: 1px solid var(--gold-dim);
+    border-inline-start: 4px solid var(--gold);
+    position: relative;
+    overflow: hidden;
+  }
+  .missing::before {
+    content: '';
+    position: absolute;
+    inset-block-start: 0;
+    inset-inline-end: 0;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, rgba(212, 175, 55, 0.15), transparent 70%);
+    pointer-events: none;
+  }
+  .missing-kicker {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 800;
+    color: var(--gold);
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    margin-block-end: 14px;
+  }
+  .missing-title {
+    font-size: clamp(22px, 2.5vw, 28px);
+    font-weight: 900;
+    color: var(--text);
+    line-height: 1.3;
+    margin-block-end: 18px;
+    letter-spacing: -0.01em;
+  }
+  .missing-body {
+    font-size: clamp(15px, 1.8vw, 17px);
+    color: var(--text);
+    line-height: 1.85;
+  }
+  .missing-body strong { color: var(--gold-bright); font-weight: 700; }
+
+  /* === FOOTER === */
+  .footer {
+    margin-block-start: 80px;
+    padding-block: 32px;
+    border-block-start: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--text-muted);
+    letter-spacing: 0.1em;
+  }
+
+  /* === PRINT === */
+  @media print {
+    :root {
+      --bg: #ffffff;
+      --surface: #ffffff;
+      --surface-2: #f6f6f6;
+      --surface-3: #f0f0f0;
+      --border: #d5d5d5;
+      --border-bright: #bcbcbc;
+      --text: #111111;
+      --text-dim: #333333;
+      --text-muted: #666666;
+      --gold: #9a7b10;
+      --gold-bright: #b88e14;
+      --gold-dim: #9a7b10;
+      --green: #15803d;
+      --red: #b91c1c;
+      --amber: #b45309;
+      --green-bg: #f0fdf4;
+      --red-bg: #fef2f2;
+      --amber-bg: #fffbeb;
+    }
+    body { background-image: none; }
+    .card:hover, .stat:hover, .insight:hover { transform: none; }
+    section { break-inside: avoid; }
+    .card, .insight { break-inside: avoid; }
+  }
+
+  /* === MOBILE === */
+  @media (max-width: 640px) {
+    .header-inner { flex-direction: column; align-items: flex-start; }
+    .header-meta { align-items: flex-start; }
+    .card-header { flex-direction: column; align-items: flex-start; gap: 6px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="container">
+    <div class="header-inner">
+      <div class="brand">
+        <div class="brand-mark"></div>
+        <div class="brand-name">ORDERRA</div>
+        <div class="brand-divider">//</div>
+        <div class="brand-title">סקירת שוק שבועית</div>
+      </div>
+      <div class="header-meta">
+        <div class="header-meta-label">Session</div>
+        <div class="header-meta-value"><span class="ltr">Sun · 18.04.2026 · 14:00 IDT</span></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="container">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-kicker"><span class="ltr">WEEK ENDING 17.04.2026</span></div>
+    <h1 class="hero-title">
+      <span class="accent">שורט-סקוויז</span> מול הפד:<br>
+      הגוף גדל, הזהב לא קונה
+    </h1>
+    <p class="hero-sub">
+      השבוע החזק של השנה — ולא כי משהו פונדמנטלי השתנה, אלא כי פרמיית המלחמה של איראן התפוגגה ביום אחד. השאלה: כמה מזה הפד מוכן לאשר בישיבה של <span class="ltr">28-29.04</span>.
+    </p>
+  </div>
+
+  <!-- STATS STRIP -->
+  <div class="stats-strip">
+    <div class="stat">
+      <div class="stat-label"><span class="ltr">S&amp;P 500</span></div>
+      <div class="stat-value"><span class="ltr">7,126.06</span></div>
+      <div class="stat-change up"><span class="ltr">+1.20% · +4.5% WoW</span></div>
+    </div>
+    <div class="stat">
+      <div class="stat-label"><span class="ltr">NASDAQ 100</span></div>
+      <div class="stat-value"><span class="ltr">24,468</span></div>
+      <div class="stat-change up"><span class="ltr">+1.52% · +5.9% WoW</span></div>
+    </div>
+    <div class="stat">
+      <div class="stat-label"><span class="ltr">RUSSELL 2000</span></div>
+      <div class="stat-value"><span class="ltr">2,776.90</span></div>
+      <div class="stat-change up"><span class="ltr">+2.11% · ATH</span></div>
+    </div>
+    <div class="stat">
+      <div class="stat-label"><span class="ltr">DOW</span></div>
+      <div class="stat-value"><span class="ltr">49,447</span></div>
+      <div class="stat-change up"><span class="ltr">+1.79% · +3.2% WoW</span></div>
+    </div>
+    <div class="stat">
+      <div class="stat-label"><span class="ltr">VIX</span></div>
+      <div class="stat-value"><span class="ltr">17.48</span></div>
+      <div class="stat-change down"><span class="ltr">-2.56% · -41% MTD</span></div>
+    </div>
+    <div class="stat">
+      <div class="stat-label"><span class="ltr">10Y YIELD</span></div>
+      <div class="stat-value"><span class="ltr">4.244%</span></div>
+      <div class="stat-change down"><span class="ltr">-6.5 bps</span></div>
+    </div>
+    <div class="stat">
+      <div class="stat-label"><span class="ltr">CRUDE OIL</span></div>
+      <div class="stat-value"><span class="ltr">$84.00</span></div>
+      <div class="stat-change down"><span class="ltr">-7.86%</span></div>
+    </div>
+    <div class="stat">
+      <div class="stat-label"><span class="ltr">GOLD</span></div>
+      <div class="stat-value"><span class="ltr">$4,849</span></div>
+      <div class="stat-change up"><span class="ltr">+0.85% · 1M high</span></div>
+    </div>
+    <div class="stat">
+      <div class="stat-label"><span class="ltr">BITCOIN</span></div>
+      <div class="stat-value"><span class="ltr">$77,460</span></div>
+      <div class="stat-change up"><span class="ltr">+3.34%</span></div>
+    </div>
+  </div>
+
+  <!-- === MARKET OVERVIEW === -->
+  <section>
+    <div class="section-header">
+      <span class="section-number"><span class="ltr">01</span></span>
+      <h2 class="section-title">סקירת שוק</h2>
+      <span class="section-sub"><span class="ltr">MARKET OVERVIEW</span></span>
+    </div>
+    <div class="overview">
+      השבוע שהסתיים ב-<span class="ltr">17.04.2026</span> היה מהחזקים של השנה. <strong>S&amp;P 500</strong> סגר ב-<span class="ltr">7,126.06</span> בשיא כל הזמנים, נאסד"ק קומפוזיט ב-<span class="ltr">24,468</span> עם <span class="ltr">13</span> ימי עלייה רצופים — <strong>הרצף הארוך ביותר מאז 1992</strong> — וראסל <span class="ltr">2000</span> בשיא חדש של <span class="ltr">2,776.90</span>. ה-<span class="ltr">S&amp;P</span> עלה <span class="ltr">4.5%</span> בשבוע, הטוב מאז יוני האחרון. הדרייבר היחיד: התפוגגות פרמיית מלחמת איראן. פתיחת מיצר הורמוז, הפסקת אש <span class="ltr">10</span> ימים בין ישראל ללבנון, וטראמפ שמסמן עסקה קרובה הורידו את הברנט מתחת ל-<span class="ltr">$90</span> לראשונה זה מעל חודש וגררו את <span class="ltr">VIX</span> ל-<span class="ltr">17.48</span> — ירידה של כ-<span class="ltr">41%</span> מהשיא של מרץ. הנרטיב התהפך מ"שוק הנפט כסיכון אינפלציוני" ל<strong>"היעלמות הלחץ על הפד"</strong>. חלק מהמהלך מוצדק — אבל הוא מורחב מהר, ומבוסס על פוזיציונינג, לא על קונצנזוס.
+    </div>
+  </section>
+
+  <!-- === KEY INSIGHTS === -->
+  <section>
+    <div class="section-header">
+      <span class="section-number"><span class="ltr">02</span></span>
+      <h2 class="section-title">תובנות מפתח</h2>
+      <span class="section-sub"><span class="ltr">KEY INSIGHTS · 6</span></span>
+    </div>
+    <div class="insights">
+      <div class="insight">
+        <div class="insight-num"><span class="ltr">#01</span></div>
+        <div class="insight-title">הפד בפאוזה — אבל הסיבה לפאוזה התפוגגה השבוע</div>
+        <div class="insight-body">
+          הריבית קפואה ב-<span class="ltr">3.50–3.75%</span> לאחר שתי ישיבות הולד רצופות. השוק מתמחר <span class="ltr">99.3%</span> אי-שינוי ב-<span class="ltr">28-29.04</span>. אבל עם נפט שנפל <span class="ltr">~8%</span> ביום אחד, הטיעון נגד הפחתה נחלש משמעותית. <strong>הפער הזה בין הנרטיב החדש לתמחור הריבית</strong> הוא ההזדמנות/הסיכון המרכזי של אפריל.
+        </div>
+      </div>
+      <div class="insight">
+        <div class="insight-num"><span class="ltr">#02</span></div>
+        <div class="insight-title">ראלי של שורט-סקוויז, לא קונצנזוס בוליש</div>
+        <div class="insight-body">
+          סקר <span class="ltr">AAII</span> מראה יותר דובים מפרים <span class="ltr">9</span> שבועות רצופים — תוך כדי שיאי <span class="ltr">ATH</span>. זה לא <span class="ltr-heb">bullish capitulation</span> — זה אילוץ של שורטים. דלק להמשך עלייה, אבל גם רגישות קיצונית לכל טריגר שלילי.
+        </div>
+      </div>
+      <div class="insight">
+        <div class="insight-num"><span class="ltr">#03</span></div>
+        <div class="insight-title">הערכות <span class="ltr">Q2</span> לאנרגיה צריכות חיתוך חד</div>
+        <div class="insight-body">
+          <span class="ltr">FactSet</span> חזתה צמיחת רווחים של <span class="ltr">71%</span> ב-<span class="ltr">Q2</span> לסקטור האנרגיה, מבוסס על <span class="ltr">WTI</span> מעל <span class="ltr">$100</span>. ב-<span class="ltr">$84</span>, המודל הזה נשבר. <span class="ltr">XOM</span> ו-<span class="ltr">CVX</span> ירדו ביום שישי — זו <strong>רק תחילת ההורדה</strong>.
+        </div>
+      </div>
+      <div class="insight">
+        <div class="insight-num"><span class="ltr">#04</span></div>
+        <div class="insight-title">זהב בשיא חודשי בסביבה של סיכון-על</div>
+        <div class="insight-body">
+          בראלי של <span class="ltr-heb">risk-on</span> עם נפט קורס, זהב אמור ליפול. הוא עולה. סימן שמישהו גדול (בנקים מרכזיים? הג'דינג מוסדי?) <strong>לא קונה את הסיפור של "הכל בסדר"</strong>. זהו הטרייד הכי אינפורמטיבי של השבוע.
+        </div>
+      </div>
+      <div class="insight">
+        <div class="insight-num"><span class="ltr">#05</span></div>
+        <div class="insight-title">עונת הדוחות תחליט אם הראלי מוצדק</div>
+        <div class="insight-body">
+          <span class="ltr">Tesla</span> ב-<span class="ltr">22.04</span>, ואחריה הגל של <span class="ltr-heb">Big Tech</span> לקראת סוף החודש. <span class="ltr">Oracle</span> פרצה <span class="ltr">+32%</span> השבוע — הטוב ביותר מאז <span class="ltr">1999</span> — על עסקת <span class="ltr">AI data center</span> של <span class="ltr">1.2GW</span> עם <span class="ltr">Bloom Energy</span>. זה הרף.
+        </div>
+      </div>
+      <div class="insight">
+        <div class="insight-num"><span class="ltr">#06</span></div>
+        <div class="insight-title">ראסל <span class="ltr">2000</span> פורץ לשיא חדש — הסיפור האמיתי</div>
+        <div class="insight-body">
+          <span class="ltr-heb">Small Caps</span> הובילו השבוע אחרי שנה של פיגור. אם הפד יעבור לטון דובי יותר, <strong>הם הנהנים הגדולים</strong> (חוב בריבית משתנה, חשיפה <span class="ltr-heb">US domestic</span>). זה <span class="ltr">Q2 trade</span> שעוד לא קיבל את הכסף הגדול.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- === SECTORS === -->
+  <section>
+    <div class="section-header">
+      <span class="section-number"><span class="ltr">03</span></span>
+      <h2 class="section-title">סקטורים ונכסים בולטים</h2>
+      <span class="section-sub"><span class="ltr">SECTORS &amp; ASSETS · 4</span></span>
+    </div>
+    <div class="cards">
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title"><span class="ltr">Semiconductors / AI Hardware</span></div>
+          <span class="badge badge-bull">Bull · Overextended</span>
+        </div>
+        <div class="card-field">
+          <div class="card-label">ביצועים השבוע</div>
+          <div class="card-text">
+            <span class="ltr">Oracle +32%</span> (הטוב מאז <span class="ltr">Oct 1999</span>); <span class="ltr">AMD</span> בשיא <span class="ltr">ATH</span>, רצף ארוך מ-<span class="ltr">20 שנה</span>; <span class="ltr">Intel +55%</span> באפריל; <span class="ltr">AVGO/MU/MRVL/ON ~+30%</span> החודש; <span class="ltr">IGV</span> השבוע הטוב מאז <span class="ltr">Oct 2001</span>.
+          </div>
+        </div>
+        <div class="card-field">
+          <div class="card-label">התאמה למאקרו</div>
+          <div class="card-text">
+            <span class="ltr">10Y</span> יורד → <span class="ltr-heb">duration discount</span> נמוך יותר. <span class="ltr-heb">Hyperscaler capex</span> צפוי לגדול ל-<span class="ltr">~$520B</span> ב-<span class="ltr">2026</span>. <strong>התזה כנה — אבל הפוזיציות צפופות.</strong>
+          </div>
+        </div>
+        <div class="card-field">
+          <div class="card-label">נרטיב</div>
+          <div class="card-text">
+            "<span class="ltr-heb">AI infrastructure phase 2</span>". מהלכי <span class="ltr">30%</span> בשבוע הופכים יעדי רבעון לאלפא. <span class="ltr">Cerebras</span> הגישה שוב <span class="ltr">IPO</span> — <strong>סימן של <span class="ltr-heb">peak enthusiasm</span></strong>, לא תחילת ציקל.
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title"><span class="ltr">Energy</span> — סיכון ירידי חד</div>
+          <span class="badge badge-bear">Bear · High Conv</span>
+        </div>
+        <div class="card-field">
+          <div class="card-label">ביצועים השבוע</div>
+          <div class="card-text">
+            ברנט מתחת ל-<span class="ltr">$90</span>, <span class="ltr">WTI $84</span> (<span class="ltr">-7.86%</span> ביום שישי), <span class="ltr">XOM -3.65%</span>, <span class="ltr">CVX -2.21%</span>.
+          </div>
+        </div>
+        <div class="card-field">
+          <div class="card-label">התאמה למאקרו</div>
+          <div class="card-text">
+            היה <span class="ltr">Q1 outperformer</span>. הערכות <span class="ltr">Q2</span> בנויות על <span class="ltr">$100+</span>. ירידה ל-<span class="ltr">$75-80</span> מחייבת חיתוך <span class="ltr">15-20%</span> בהערכות <span class="ltr-heb">EPS</span> — <strong>טרם תומחר</strong>.
+          </div>
+        </div>
+        <div class="card-field">
+          <div class="card-label">נרטיב</div>
+          <div class="card-text">
+            נרטיב המלחמה קבור. רמת <span class="ltr-heb">break-even</span> של <span class="ltr">OPEC+</span> כנראה <span class="ltr">$70-75</span>. <span class="ltr-heb">Integrateds</span> ו-<span class="ltr-heb">E&amp;P</span> ידממו. רפינרים (<span class="ltr">VLO, MPC</span>) — נהנים מנפט זול.
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title"><span class="ltr">Russell 2000 / Small Caps</span></div>
+          <span class="badge badge-bull">Bull · Best Setup</span>
+        </div>
+        <div class="card-field">
+          <div class="card-label">ביצועים השבוע</div>
+          <div class="card-text">
+            <span class="ltr">+2.11%</span> ביום שישי לשיא חדש <span class="ltr">2,776.90</span>. הובילו את השוק.
+          </div>
+        </div>
+        <div class="card-field">
+          <div class="card-label">התאמה למאקרו</div>
+          <div class="card-text">
+            ממונפות יותר, חוב ברובו בריבית משתנה. <strong>כל איתות דובי מהפד = דלק ישיר</strong>. חשיפה <span class="ltr-heb">US domestic</span> טהורה — פחות רגישות לסחר עולמי ולדולר.
+          </div>
+        </div>
+        <div class="card-field">
+          <div class="card-label">נרטיב</div>
+          <div class="card-text">
+            "הפיגור סוגר פער". שנים של קיפאון ב-<span class="ltr">IWM</span> הפכו לתזה של <span class="ltr-heb">broadening beyond Mag 7</span>. זה <span class="ltr">Q2 setup</span> הכי נקי.
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title"><span class="ltr">Gold (GC)</span></div>
+          <span class="badge badge-bull">Bull · Strategic</span>
+        </div>
+        <div class="card-field">
+          <div class="card-label">ביצועים השבוע</div>
+          <div class="card-text">
+            <span class="ltr">$4,849</span> (<span class="ltr">+0.85%</span> ביום שישי, שיא חודשי).
+          </div>
+        </div>
+        <div class="card-field">
+          <div class="card-label">התאמה למאקרו</div>
+          <div class="card-text">
+            <strong>לא מתאים.</strong> בראלי של סיכון-על עם נפט קורס ו-<span class="ltr">VIX</span> צונח, זהב אמור להיחלש. הוא מתחזק.
+          </div>
+        </div>
+        <div class="card-field">
+          <div class="card-label">נרטיב</div>
+          <div class="card-text">
+            הסימן האינפורמטיבי ביותר של השבוע. הכסף החכם לא קונה "<span class="ltr-heb">end of war, all clear</span>". או בנקים מרכזיים, או הג'דינג אינפלציה מבנית מעבר לנפט.
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- === STANDOUT NAMES === -->
+  <section>
+    <div class="section-header">
+      <span class="section-number"><span class="ltr">04</span></span>
+      <h2 class="section-title">מניות וסחורות בולטות</h2>
+      <span class="section-sub"><span class="ltr">STANDOUT NAMES · 6</span></span>
+    </div>
+    <div class="cards">
+
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <div class="card-ticker"><span class="ltr">NFLX</span></div>
+            <div class="card-price"><span class="ltr">$97.31 · -9.72%</span></div>
+          </div>
+          <span class="badge badge-bear">Narrative Break</span>
+        </div>
+        <div class="card-field">
+          <div class="card-label">מה קרה</div>
+          <div class="card-text">הדוח חזק (הכנסות <span class="ltr">+16%</span>, <span class="ltr">EPS +86%</span>) אבל תחזית <span class="ltr">Q2</span> (<span class="ltr">+12–14%</span>) אכזבה, ו-<span class="ltr">Reed Hastings</span> יצא מהדירקטוריון. נפח <span class="ltr">x2.52</span> הממוצע.</div>
+        </div>
+        <div class="card-field">
+          <div class="card-label">פרשנות</div>
+          <div class="card-text">השוק לא העניש על ביצועים — אלא על <strong>איבוד נרטיב</strong>. מכפיל <span class="ltr">P/E 31</span> בעולם שבו כל מה שאינו <span class="ltr-heb">AI pure-play</span> מקבל טיפול קשוח.</div>
+        </div>
+        <div class="card-field">
+          <div class="card-label">חיבור למאקרו/סקטור</div>
+          <div class="card-text">מקרה ספציפי, לא איתות שוק כולל. אבל מזכיר שמכפיל <span class="ltr">30+</span> ללא נרטיב <span class="ltr">AI</span> חזק = חשיפה מסוכנת.</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <div class="card-ticker"><span class="ltr">ORCL</span></div>
+            <div class="card-price"><span class="ltr">+32% WoW · Best since Oct 1999</span></div>
+          </div>
+          <span class="badge badge-bull">Parabolic</span>
+        </div>
+        <div class="card-field">
+          <div class="card-label">מה קרה</div>
+          <div class="card-text">הרחבת עסקה של <span class="ltr">1.2GW</span> עם <span class="ltr">Bloom Energy</span> ל-<span class="ltr">AI data centers</span>. השבוע הטוב ביותר מאז <span class="ltr">Oct 1999</span>.</div>
+        </div>
+        <div class="card-field">
+          <div class="card-label">פרשנות</div>
+          <div class="card-text"><span class="ltr">Oracle</span> עשתה מעבר מ-<span class="ltr-heb">legacy DB</span> ל-<span class="ltr-heb">AI cloud infra</span>, והשוק סוף-סוף מתמחר בהתאם. <strong>זה <span class="ltr-heb">re-rating</span> אמיתי</strong>, לא ספקולציה.</div>
+        </div>
+        <div class="card-field">
+          <div class="card-label">חיבור למאקרו/סקטור</div>
+          <div class="card-text">הלב של סיפור ה-<span class="ltr">AI capex</span>. אבל <span class="ltr">+32%</span> בשבוע = תנועה פרבולית. פוזיציה חדשה — <strong>לחכות ל-<span class="ltr-heb">pullback</span> של <span class="ltr">10-15%</span>, לא לרדוף</strong>.</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <div class="card-ticker"><span class="ltr">TSLA</span></div>
+            <div class="card-price"><span class="ltr">$400.62 · +3.01%</span></div>
+          </div>
+          <span class="badge badge-neutral">Binary · 22.04</span>
+        </div>
+        <div class="card-field">
+          <div class="card-label">מה קרה</div>
+          <div class="card-text">שבירת רצף ירידות של <span class="ltr">8</span> שבועות. נפח <span class="ltr">+41%</span> מהממוצע. דוחות ב-<span class="ltr">22.04</span> — דגש <span class="ltr-heb">robotaxi</span> ו-<span class="ltr">AI chip</span>.</div>
+        </div>
+        <div class="card-field">
+          <div class="card-label">פרשנות</div>
+          <div class="card-text">אחרי <span class="ltr">8</span> שבועות אדומים ועדכון <span class="ltr">Q1</span> מאכזב (<span class="ltr">358K</span> מסירות), הציפיות במחיר. הדוח <strong>binary</strong>: סיגנל <span class="ltr-heb">robotaxi</span>/<span class="ltr">AI</span> ברור → <span class="ltr">+15%</span>. בלי → חזרה ל-<span class="ltr">$300</span>.</div>
+        </div>
+        <div class="card-field">
+          <div class="card-label">חיבור למאקרו/סקטור</div>
+          <div class="card-text">בסיכון-על כללי ועם שורטים חשופים, ה-<span class="ltr-heb">risk-reward</span> נוטה חיובית טרם הדוח — אבל <strong>לא מצדיק פוזיציה ממוקדת</strong>.</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <div class="card-ticker"><span class="ltr">CL · WTI Crude</span></div>
+            <div class="card-price"><span class="ltr">$84.00 · -7.86%</span></div>
+          </div>
+          <span class="badge badge-bear">Bearish · Target $75</span>
+        </div>
+        <div class="card-field">
+          <div class="card-label">מה קרה</div>
+          <div class="card-text">נפילת פרמיית מלחמת איראן ביום אחד. מתחת ל-<span class="ltr">$90</span> לראשונה זה מעל חודש.</div>
+        </div>
+        <div class="card-field">
+          <div class="card-label">פרשנות</div>
+          <div class="card-text">הנרטיב קבור. טווח רגוע כנראה <span class="ltr">$70-75</span> (<span class="ltr">OPEC+ break-even</span>). פוטנציאל ירידה נוסף <span class="ltr">10-15%</span>.</div>
+        </div>
+        <div class="card-field">
+          <div class="card-label">חיבור למאקרו/סקטור</div>
+          <div class="card-text"><strong>הדומינו המרכזי</strong> — מוריד אינפלציה, מצדיק ראלי נאסד"ק, פותח פתח להפד. אבל רק אם מתחת ל-<span class="ltr">$80</span> מתמשך.</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <div class="card-ticker"><span class="ltr">GC · Gold</span></div>
+            <div class="card-price"><span class="ltr">$4,849 · 1M high</span></div>
+          </div>
+          <span class="badge badge-bull">Paradox · Watch</span>
+        </div>
+        <div class="card-field">
+          <div class="card-label">מה קרה</div>
+          <div class="card-text">זהב עולה במקביל לראלי הסיכון-על. לא אמור.</div>
+        </div>
+        <div class="card-field">
+          <div class="card-label">פרשנות</div>
+          <div class="card-text"><strong>הפרדוקס של השבוע</strong>. הטרייד היחיד שאומר "אל תתרגל לזה". אות על הג'דינג מוסדי עמוק מתחת לפני השטח.</div>
+        </div>
+        <div class="card-field">
+          <div class="card-label">חיבור למאקרו/סקטור</div>
+          <div class="card-text">זהב מעל <span class="ltr">$4,900</span> מתמשך → אות מוסדי. מקל אסטרטגי, לא טקטי.</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <div class="card-ticker"><span class="ltr">IWM · Russell 2000</span></div>
+            <div class="card-price"><span class="ltr">2,776.90 · ATH</span></div>
+          </div>
+          <span class="badge badge-bull">Cleanest Setup</span>
+        </div>
+        <div class="card-field">
+          <div class="card-label">מה קרה</div>
+          <div class="card-text"><span class="ltr">+2.11%</span> ביום שישי, הובילו את השוק.</div>
+        </div>
+        <div class="card-field">
+          <div class="card-label">פרשנות</div>
+          <div class="card-text"><span class="ltr-heb">Small Caps</span> פורצות אחרי שנה של <span class="ltr-heb">underperformance</span>. זה <span class="ltr-heb">broadening out</span> — <strong>שלב <span class="ltr">2</span> של <span class="ltr-heb">bull market</span></strong>.</div>
+        </div>
+        <div class="card-field">
+          <div class="card-label">חיבור למאקרו/סקטור</div>
+          <div class="card-text">הכלי הטהור ביותר לתסריט "פד דובי + נחיתה רכה". <span class="ltr">FOMC 28.04</span> יוני מהצפוי → <span class="ltr">IWM</span> מובילה.</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- === INSTITUTIONAL === -->
+  <section>
+    <div class="section-header">
+      <span class="section-number"><span class="ltr">05</span></span>
+      <h2 class="section-title">פרשנות מוסדית</h2>
+      <span class="section-sub"><span class="ltr">INSTITUTIONAL LENS</span></span>
+    </div>
+    <div class="institutional">
+      <p>הראלי הזה נראה כמו <strong>שורט-סקוויז קלאסי</strong>, לא שינוי פוזיציונינג אמיתי. הראיות:</p>
+      <ul>
+        <li><span class="ltr">AAII</span> <span class="ltr">9</span> שבועות רצופים יותר דובים מפרים, בשיאי <span class="ltr">ATH</span> — דיסוננס היסטורי.</li>
+        <li>כותרות <span class="ltr">Bloomberg</span> מפורשות על "<span class="ltr-heb">Short Squeeze Fuels Rally</span>".</li>
+        <li><span class="ltr">VIX</span> ירד מ-<span class="ltr">~30</span> בתחילת מרץ ל-<span class="ltr">17.48</span> — התפוגגות מהירה של <span class="ltr-heb">hedges</span>, לא לונג חדש בגוף.</li>
+        <li><span class="ltr">Deutsche Bank</span> ו-<span class="ltr">Wells Fargo</span> מעריכים שה-<span class="ltr-heb">haven trade</span> בדולר הסתיים.</li>
+      </ul>
+      <p>ברמת <span class="ltr">COT</span> — נתוני <span class="ltr">07.04</span> (לפני שיא הראלי) הראו <span class="ltr">Leveraged Funds</span> יחסית ניטרליים-שליליים בחוזי אינדקס. השבוע, <span class="ltr">LFs</span> כמעט בוודאי נאלצו להוסיף לונג מתחת לאילוץ. זה מרמז ש<strong>חצי המהלך בגוף של הכסף המוסדי כבר מאחורינו</strong>.</p>
+      <p>התמונה הכוללת: <span class="ltr-heb">de-riskification</span> של פוזיציות הגנתיות (זהב הוא היוצא הבולט), קונים של <span class="ltr">LFs</span> נכנסים מאוחר, ופיזור סקטורי בריא (<span class="ltr-heb">Tech</span> מוביל, <span class="ltr-heb">Small Caps</span> מוביל, <span class="ltr-heb">Energy</span> יורד — רוטציה מהודקת, לא <span class="ltr-heb">short-covering</span> עיוור). אבל <strong>זה לא <span class="ltr">Q1 2023</span></strong> שבו הכסף הגדול נכנס בתחילה. זה <span class="ltr">3</span> שבועות לתוך הראלי.</p>
+    </div>
+  </section>
+
+  <!-- === INVESTMENT OUTLOOK === -->
+  <section>
+    <div class="section-header">
+      <span class="section-number"><span class="ltr">06</span></span>
+      <h2 class="section-title">תחזית השקעה</h2>
+      <span class="section-sub"><span class="ltr">POSITIONING · 8</span></span>
+    </div>
+    <div class="outlook">
+      <table>
+        <thead>
+          <tr>
+            <th>נכס</th>
+            <th>כיוון</th>
+            <th>טווח</th>
+            <th>ביטחון</th>
+            <th>נימוק</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="asset"><span class="ltr">S&amp;P 500 · ES</span></td>
+            <td><span class="badge badge-neutral">Neutral</span></td>
+            <td>קצר</td>
+            <td>בינוני</td>
+            <td class="rationale">ראלי מורחב, <span class="ltr">13</span> ימים <span class="ltr">ATH</span>. <span class="ltr-heb">Buy-on-dip</span> ל-<span class="ltr">7,050</span>, לא לרדוף.</td>
+          </tr>
+          <tr>
+            <td class="asset"><span class="ltr">Nasdaq 100 · NQ</span></td>
+            <td><span class="badge badge-bull">Bull-Tilt</span></td>
+            <td>קצר-בינוני</td>
+            <td>בינוני</td>
+            <td class="rationale">לא לסגור, לא להוסיף מעל <span class="ltr">24,500</span>. <span class="ltr-heb">Pullback</span> של <span class="ltr">2-3%</span> — להוסיף.</td>
+          </tr>
+          <tr>
+            <td class="asset"><span class="ltr">Russell 2000 · IWM</span></td>
+            <td><span class="badge badge-bull">Bullish</span></td>
+            <td>בינוני</td>
+            <td>בינוני</td>
+            <td class="rationale">הסטאפ הנקי ביותר במדדים. סטופ: מתחת ל-<span class="ltr">2,700</span>.</td>
+          </tr>
+          <tr>
+            <td class="asset"><span class="ltr">Crude Oil · CL</span></td>
+            <td><span class="badge badge-bear">Bearish</span></td>
+            <td>קצר-בינוני</td>
+            <td>גבוה</td>
+            <td class="rationale">יעד <span class="ltr">$75-78</span> אם ההפסקה מחזיקה. סטופ: מעל <span class="ltr">$92</span>.</td>
+          </tr>
+          <tr>
+            <td class="asset"><span class="ltr">Gold · GC</span></td>
+            <td><span class="badge badge-bull">Bullish</span></td>
+            <td>בינוני-ארוך</td>
+            <td>בינוני</td>
+            <td class="rationale">תזה אסטרטגית: דולר חלש + זהב חזק בסביבה שגויה לעלייתו.</td>
+          </tr>
+          <tr>
+            <td class="asset"><span class="ltr">Energy · XLE/XOM/CVX</span></td>
+            <td><span class="badge badge-bear">Bearish</span></td>
+            <td>בינוני</td>
+            <td>גבוה</td>
+            <td class="rationale">הורדת הערכות <span class="ltr">Q2</span> בדרך. <span class="ltr">-10-15%</span> על הליידרים אפשרי.</td>
+          </tr>
+          <tr>
+            <td class="asset"><span class="ltr">Tesla · TSLA</span></td>
+            <td><span class="badge badge-neutral">Neutral</span></td>
+            <td>קצר</td>
+            <td>נמוך</td>
+            <td class="rationale">דוח <span class="ltr">22.04</span> בינארי. אין סיבה לתפוס צד מראש.</td>
+          </tr>
+          <tr>
+            <td class="asset"><span class="ltr">Dollar Index · DXY</span></td>
+            <td><span class="badge badge-bear">Bearish</span></td>
+            <td>בינוני</td>
+            <td>בינוני</td>
+            <td class="rationale"><span class="ltr-heb">Haven demand</span> התפוגג. תמיכה מרכזית נשברה.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- === RISK === -->
+  <section>
+    <div class="section-header">
+      <span class="section-number"><span class="ltr">07</span></span>
+      <h2 class="section-title">תרחישי סיכון</h2>
+      <span class="section-sub"><span class="ltr">RISK SCENARIOS</span></span>
+    </div>
+    <div class="risks">
+      <div class="risk">
+        <div class="risk-label">מה עלול להפריך את התזה</div>
+        <div class="risk-body">
+          חידוש לחימה באיראן (החזרת <span class="ltr">$100</span> נפט); <span class="ltr">Core PCE</span> גבוה מהצפוי ב-<span class="ltr">24.04</span>; דוח <span class="ltr">Tesla</span> ב-<span class="ltr">22.04</span> שישבור את מומנטום שבירת רצף הירידות; דוחות מאכזבים ב-<span class="ltr-heb">Big Tech</span> ב-<span class="ltr">28-31.04</span> שיפגעו בסיפור ה-<span class="ltr">AI capex</span>; פד הוקי ב-<span class="ltr">28-29.04</span> שיסמן "<span class="ltr-heb">tighter for longer</span>".
+        </div>
+      </div>
+      <div class="risk">
+        <div class="risk-label">הלא-ידוע הגדול ביותר</div>
+        <div class="risk-body">
+          האם הפד ייתן ב-<span class="ltr">28.04</span> סיגנל ברור להפחתה ביוני-יולי, או יישאר נייטרלי. <strong>זו הנקודה שהשוק עדיין לא מתמחר</strong>. <span class="ltr">FOMC</span> הוקי ימחק את חצי הראלי של אפריל בלי להניד עין.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- === WHAT'S MISSING === -->
+  <section>
+    <div class="section-header">
+      <span class="section-number"><span class="ltr">08</span></span>
+      <h2 class="section-title">מה השוק מפספס?</h2>
+      <span class="section-sub"><span class="ltr">THE EDGE</span></span>
+    </div>
+    <div class="missing">
+      <div class="missing-kicker"><span class="ltr">ASYMMETRIC INSIGHT</span></div>
+      <div class="missing-title">הפער בין הנרטיב החדש לבין מה שהפד יגיד ב-<span class="ltr">28.04</span>.</div>
+      <div class="missing-body">
+        השוק כבר תמחר את סיום המלחמה — אבל טרם תמחר אכזבה אם פאוול יישאר עם מסר של "סיכונים דו-כיווניים ונתונים דומיננטיים". <strong>הזהב ב-<span class="ltr">$4,849</span> אומר לנו שמישהו גדול לא קונה את הסיפור</strong>. זה לא <span class="ltr-heb">momentum player</span> — זה הכסף המוסדי שמגדר. <br><br>
+        כשכל השאר אומר "<span class="ltr-heb">all clear</span>" והזהב לא מסכים, <strong>שם ההזדמנות לאי-קונצנזוס</strong>.
+      </div>
+    </div>
+  </section>
+
+  <!-- === FOOTER === -->
+  <footer class="footer">
+    <div><span class="ltr">ORDERRA · WEEKLY MARKET ANALYSIS</span></div>
+    <div><span class="ltr">Generated Sun 18.04.2026 · Not investment advice</span></div>
+  </footer>
+
+</div>
+
+</body>
+</html>
