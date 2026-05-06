@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>ORDERRA — הצטרף לקבוצה</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;600;700;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --gold: #C9A84C;
+      --gold-light: #E8C96A;
+      --gold-dim: #8a6f2e;
+      --bg-deep: #0a0a0c;
+      --bg-card: #111116;
+      --bg-input: #18181f;
+      --border: #2a2a35;
+      --text-main: #e8e8e8;
+      --text-muted: #888899;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Heebo', sans-serif;
+      background-color: var(--bg-deep);
+      color: var(--text-main);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ─── GRID BACKGROUND ─── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(201,168,76,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(201,168,76,0.04) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ─── GLOW ORBS ─── */
+    .orb {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(120px);
+      pointer-events: none;
+      z-index: 0;
+    }
+    .orb-1 {
+      width: 500px; height: 500px;
+      background: rgba(201,168,76,0.07);
+      top: -150px; right: -100px;
+    }
+    .orb-2 {
+      width: 400px; height: 400px;
+      background: rgba(201,168,76,0.05);
+      bottom: -100px; left: -100px;
+    }
+
+    /* ─── WRAPPER ─── */
+    .wrapper {
+      position: relative;
+      z-index: 1;
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 60px 24px 80px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+    }
+
+    /* ─── LOGO / BRAND ─── */
+    .brand {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+    .brand-logo {
+      font-size: 2.8rem;
+      font-weight: 900;
+      letter-spacing: 0.18em;
+      color: var(--gold);
+      text-transform: uppercase;
+      line-height: 1;
+      text-shadow: 0 0 40px rgba(201,168,76,0.35);
+    }
+    .brand-sub {
+      font-size: 0.78rem;
+      letter-spacing: 0.35em;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      margin-top: 6px;
+    }
+
+    /* ─── DIVIDER ─── */
+    .divider {
+      width: 60px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      margin: 0 auto 48px;
+    }
+
+    /* ─── HEADLINE BLOCK ─── */
+    .headline-block {
+      text-align: center;
+      margin-bottom: 52px;
+    }
+    .headline-tag {
+      display: inline-block;
+      font-size: 0.72rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      border: 1px solid var(--gold-dim);
+      padding: 5px 16px;
+      border-radius: 20px;
+      margin-bottom: 24px;
+      background: rgba(201,168,76,0.05);
+    }
+    .headline-main {
+      font-size: clamp(1.9rem, 5vw, 2.8rem);
+      font-weight: 900;
+      line-height: 1.2;
+      color: #fff;
+      margin-bottom: 20px;
+    }
+    .headline-main span {
+      color: var(--gold);
+    }
+    .headline-body {
+      font-size: 1.05rem;
+      line-height: 1.75;
+      color: var(--text-muted);
+      max-width: 520px;
+      margin: 0 auto;
+    }
+    .headline-body strong {
+      color: var(--text-main);
+      font-weight: 600;
+    }
+
+    /* ─── PERKS ─── */
+    .perks {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      width: 100%;
+      margin-bottom: 52px;
+    }
+    .perk {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 18px 20px;
+      transition: border-color 0.25s;
+    }
+    .perk:hover { border-color: var(--gold-dim); }
+    .perk-icon {
+      font-size: 1.3rem;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .perk-text strong {
+      display: block;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 3px;
+    }
+    .perk-text span {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* ─── FORM CARD ─── */
+    .form-card {
+      width: 100%;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 40px 36px;
+      position: relative;
+      overflow: hidden;
+    }
+    .form-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+    .form-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #fff;
+      text-align: center;
+      margin-bottom: 6px;
+    }
+    .form-subtitle {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      text-align: center;
+      margin-bottom: 28px;
+    }
+
+    .field {
+      margin-bottom: 16px;
+    }
+    .field label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      letter-spacing: 0.05em;
+      margin-bottom: 7px;
+    }
+    .field input {
+      width: 100%;
+      background: var(--bg-input);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 13px 16px;
+      font-size: 0.95rem;
+      font-family: 'Heebo', sans-serif;
+      color: var(--text-main);
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      direction: rtl;
+    }
+    .field input::placeholder { color: #44445a; }
+    .field input:focus {
+      border-color: var(--gold-dim);
+      box-shadow: 0 0 0 3px rgba(201,168,76,0.1);
+    }
+
+    .btn-submit {
+      width: 100%;
+      margin-top: 8px;
+      padding: 15px;
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+      color: #0a0a0c;
+      font-family: 'Heebo', sans-serif;
+      font-size: 1rem;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: opacity 0.2s, transform 0.15s, box-shadow 0.2s;
+      box-shadow: 0 4px 24px rgba(201,168,76,0.25);
+    }
+    .btn-submit:hover {
+      opacity: 0.9;
+      transform: translateY(-1px);
+      box-shadow: 0 8px 32px rgba(201,168,76,0.35);
+    }
+    .btn-submit:active { transform: translateY(0); }
+
+    .form-note {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      text-align: center;
+      margin-top: 14px;
+    }
+
+    /* ─── SUCCESS STATE ─── */
+    .success-msg {
+      display: none;
+      text-align: center;
+      padding: 20px 0;
+    }
+    .success-msg .check {
+      font-size: 2.5rem;
+      margin-bottom: 12px;
+    }
+    .success-msg h3 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--gold);
+      margin-bottom: 8px;
+    }
+    .success-msg p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    /* ─── FOOTER ─── */
+    .footer {
+      margin-top: 48px;
+      text-align: center;
+      font-size: 0.75rem;
+      color: #333344;
+      letter-spacing: 0.1em;
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 480px) {
+      .form-card { padding: 28px 20px; }
+      .wrapper { padding: 40px 16px 60px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+
+  <div class="wrapper">
+
+    <!-- BRAND -->
+    <div class="brand">
+      <div class="brand-logo">ORDERRA</div>
+      <div class="brand-sub">Order Flow &amp; Quant Trading</div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- HEADLINE -->
+    <div class="headline-block">
+      <div class="headline-tag">הזמנה אישית</div>
+      <h1 class="headline-main">
+        אתה לא מנחש.<br/>
+        <span>אתה יודע.</span>
+      </h1>
+      <p class="headline-body">
+        מסחר <strong>Order Flow</strong> ו-<strong>Quant</strong> — הדרך שבה מוסדיים קוראים את השוק.
+        הצטרף לקבוצה הסגורה, קבל גישה ישירה אליי ולכל הכלים.
+      </p>
+    </div>
+
+    <!-- PERKS -->
+    <div class="perks">
+      <div class="perk">
+        <div class="perk-icon">⚡</div>
+        <div class="perk-text">
+          <strong>קבוצה סגורה של סוחרי Order Flow</strong>
+          <span>כניסה ישירה לקבוצה עם הצטרפות לאחד מהמסלולים — סוחרים רציניים בלבד.</span>
+        </div>
+      </div>
+      <div class="perk">
+        <div class="perk-icon">🎯</div>
+        <div class="perk-text">
+          <strong>גישה ישירה אליי — בלי מתווכים</strong>
+          <span>שאלה, רעיון, ניתוח בזמן אמת — אני שם. תמיד.</span>
+        </div>
+      </div>
+      <div class="perk">
+        <div class="perk-icon">📊</div>
+        <div class="perk-text">
+          <strong>Order Flow + Quant — שיטה שלמה</strong>
+          <span>לא אינדיקטורים. לא ניחושים. קריאת שוק אמיתית, מבוססת נתונים.</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- FORM -->
+    <div class="form-card" id="formCard">
+      <div id="formContent">
+        <div class="form-title">השאר פרטים — נחזור אליך</div>
+        <div class="form-subtitle">מלא שם ומספר, ונדבר על המסלול המתאים לך</div>
+
+        <form id="leadForm" novalidate>
+          <div class="field">
+            <label for="fname">שם מלא</label>
+            <input type="text" id="fname" name="fname" placeholder="ישראל ישראלי" required autocomplete="name" />
+          </div>
+          <div class="field">
+            <label for="phone">מספר טלפון</label>
+            <input type="tel" id="phone" name="phone" placeholder="050-0000000" required autocomplete="tel" inputmode="tel" />
+          </div>
+          <button type="submit" class="btn-submit">אני רוצה להצטרף ←</button>
+          <p class="form-note">הפרטים שלך נשמרים בצורה מאובטחת ולא יועברו לצד שלישי.</p>
+        </form>
+      </div>
+
+      <div class="success-msg" id="successMsg">
+        <div class="check">✅</div>
+        <h3>קיבלנו! נחזור אליך בקרוב.</h3>
+        <p>תודה שהשארת פרטים.<br/>נציג יצור איתך קשר בהקדם.</p>
+      </div>
+    </div>
+
+    <div class="footer">© 2025 ORDERRA · כל הזכויות שמורות</div>
+
+  </div>
+
+  <script>
+    const form = document.getElementById('leadForm');
+    const formContent = document.getElementById('formContent');
+    const successMsg = document.getElementById('successMsg');
+
+    form.addEventListener('submit', async function(e) {
+      e.preventDefault();
+
+      const name  = document.getElementById('fname').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+
+      if (!name || !phone) {
+        alert('אנא מלא שם ומספר טלפון.');
+        return;
+      }
+
+      const btn = form.querySelector('.btn-submit');
+      btn.textContent = 'שולח...';
+      btn.disabled = true;
+
+      try {
+        // ─── RAV MESSER WEBHOOK ───
+        // החלף את ה-URL למטה בכתובת ה-Webhook שתקבל מרב מסר
+        const RAV_MESSER_WEBHOOK = 'https://YOUR_RAV_MESSER_WEBHOOK_URL_HERE';
+
+        await fetch(RAV_MESSER_WEBHOOK, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name, phone })
+        });
+      } catch (err) {
+        // גם אם הבקשה נכשלת, מציגים הודעת הצלחה למשתמש
+        console.warn('Webhook error:', err);
+      }
+
+      // הצגת הודעת הצלחה
+      formContent.style.display = 'none';
+      successMsg.style.display = 'block';
+    });
+  </script>
+
+</body>
+</html>
