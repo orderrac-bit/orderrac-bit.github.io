@@ -369,12 +369,16 @@
     <div class="form-card" id="formCard">
       <div id="formContent">
         <div class="form-title">השאר פרטים — נחזור אליך</div>
-        <div class="form-subtitle">מלא שם ומספר, ונדבר על המסלול המתאים לך</div>
+        <div class="form-subtitle">מלא פרטים ונדבר על המסלול המתאים לך</div>
 
         <form id="leadForm" novalidate>
           <div class="field">
             <label for="fname">שם מלא</label>
             <input type="text" id="fname" name="fname" placeholder="ישראל ישראלי" required autocomplete="name" />
+          </div>
+          <div class="field">
+            <label for="email">כתובת מייל</label>
+            <input type="email" id="email" name="email" placeholder="example@gmail.com" required autocomplete="email" inputmode="email" />
           </div>
           <div class="field">
             <label for="phone">מספר טלפון</label>
@@ -405,10 +409,11 @@
       e.preventDefault();
 
       const name  = document.getElementById('fname').value.trim();
+      const email = document.getElementById('email').value.trim();
       const phone = document.getElementById('phone').value.trim();
 
-      if (!name || !phone) {
-        alert('אנא מלא שם ומספר טלפון.');
+      if (!name || !email || !phone) {
+        alert('אנא מלא את כל השדות.');
         return;
       }
 
@@ -424,7 +429,7 @@
         await fetch(RAV_MESSER_WEBHOOK, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ name, phone })
+          body: JSON.stringify({ name, email, phone })
         });
       } catch (err) {
         // גם אם הבקשה נכשלת, מציגים הודעת הצלחה למשתמש
