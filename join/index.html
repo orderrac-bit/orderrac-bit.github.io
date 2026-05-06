@@ -371,20 +371,18 @@
         <div class="form-title">השאר פרטים — נחזור אליך</div>
         <div class="form-subtitle">מלא פרטים ונדבר על המסלול המתאים לך</div>
 
-        <form method="post" action="https://cp.responder.co.il/subscribe.php" onsubmit="return responder_validation(this);">
-          <input type="hidden" name="form_id" value="2869681" />
-          <input type="hidden" name="encoding" value="" />
+        <form id="leadForm">
           <div class="field">
             <label>שם מלא</label>
-            <input type="text" name="fields[subscribers_name]" placeholder="ישראל ישראלי" dir="rtl" autocomplete="name" />
+            <input type="text" id="f_name" placeholder="ישראל ישראלי" dir="rtl" autocomplete="name" />
           </div>
           <div class="field">
             <label>מספר טלפון</label>
-            <input type="text" name="fields[subscribers_phone]" placeholder="050-0000000" dir="ltr" autocomplete="tel" inputmode="tel" />
+            <input type="text" id="f_phone" placeholder="050-0000000" dir="ltr" autocomplete="tel" inputmode="tel" />
           </div>
           <div class="field">
             <label>כתובת מייל</label>
-            <input type="text" name="fields[subscribers_email]" placeholder="example@gmail.com" dir="ltr" autocomplete="email" inputmode="email" />
+            <input type="text" id="f_email" placeholder="example@gmail.com" dir="ltr" autocomplete="email" inputmode="email" />
           </div>
           <button type="submit" class="btn-submit">אני רוצה להצטרף ←</button>
           <p class="form-note">הפרטים שלך נשמרים בצורה מאובטחת ולא יועברו לצד שלישי.</p>
@@ -402,44 +400,47 @@
 
   </div>
 
-  <script type="text/javascript">
-  <!--
-  function responder_validation(form) {
-    var inputs = form.getElementsByTagName('input');
+  <script>
     var filter_email = /^([\w\!\#$\%\&\'\*\+\-\/\=\?\^\`{\|\}\~]+\.)*[\w\!\#$\%\&\'\*\+\-\/\=\?\^\`{\|\}\~]+@(((((([a-z0-9]{1}[a-z0-9\-]{0,62}[a-z0-9]{1})|[a-z0-9])\.)+[a-z]{2,})|(\d{1,3}\.){3}\d{1,3}(\:\d{1,5})?))$/i;
     var filter_phone = /^(?:050|051|052|053|054|055|057|058|072|073|074|076|077|079|02|03|04|08|09)\d{7,7}$/;
-    for (var a=0; a<inputs.length; a++) {
-      switch (inputs[a].name) {
-        case 'fields[subscribers_email]':
-          if (!filter_email.test(inputs[a].value)) {
-            alert('כתובת הדוא"ל אינה חוקית');
-            inputs[a].focus(); return false;
-          }
-          break;
-        case 'fields[subscribers_phone]':
-          var phone = inputs[a].value.replace(/-|\s/g, '');
-          if (!filter_phone.test(phone.length==0 || phone.charAt(0)=='0' ? phone : '0' + phone)) {
-            alert('מספר הטלפון הנייד אינו חוקי');
-            inputs[a].focus(); return false;
-          }
-          break;
-        case 'fields[subscribers_name]':
-          if (inputs[a].value.replace(/^\s+|\s+$/g, '')=='') {
-            alert('נא לרשום שם');
-            inputs[a].focus(); return false;
-          }
-          break;
+
+    document.getElementById('leadForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      var name  = document.getElementById('f_name').value.trim();
+      var phone = document.getElementById('f_phone').value.trim();
+      var email = document.getElementById('f_email').value.trim();
+
+      if (name === '') { alert('נא לרשום שם'); document.getElementById('f_name').focus(); return; }
+
+      var cleanPhone = phone.replace(/-|\s/g, '');
+      if (!filter_phone.test(cleanPhone.length === 0 || cleanPhone.charAt(0) === '0' ? cleanPhone : '0' + cleanPhone)) {
+        alert('מספר הטלפון הנייד אינו חוקי'); document.getElementById('f_phone').focus(); return;
       }
-    }
-    if (document.charset) form.encoding.value = document.charset;
-    else if (document.defaultCharset) form.encoding.value = document.defaultCharset;
-    else if (document.characterSet) form.encoding.value = document.characterSet;
-    if (navigator.userAgent.indexOf(';FBAV/') > -1 || navigator.userAgent.indexOf('Instagram') > -1) {
-      form.target = '_self';
-    }
-    return true;
-  }
-  //-->
+
+      if (!filter_email.test(email)) { alert('כתובת הדוא"ל אינה חוקית'); document.getElementById('f_email').focus(); return; }
+
+      var btn = document.querySelector('.btn-submit');
+      btn.textContent = 'שולח...';
+      btn.disabled = true;
+
+      var encoding = document.charset || document.defaultCharset || document.characterSet || 'UTF-8';
+      var body = 'form_id=2869681'
+        + '&encoding=' + encodeURIComponent(encoding)
+        + '&fields%5Bsubscribers_name%5D=' + encodeURIComponent(name)
+        + '&fields%5Bsubscribers_phone%5D=' + encodeURIComponent(phone)
+        + '&fields%5Bsubscribers_email%5D=' + encodeURIComponent(email);
+
+      fetch('https://cp.responder.co.il/subscribe.php', {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: body
+      }).finally(function() {
+        document.getElementById('formContent').style.display = 'none';
+        document.getElementById('successMsg').style.display = 'block';
+      });
+    });
   </script>
 
 </body>
